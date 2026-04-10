@@ -343,7 +343,7 @@ if __name__ == '__main__':
         'languages_programming': 'Python, JavaScript',
         'languages_computer': 'HTML, CSS',
         'languages_real': 'English, German',
-        'hobbies_software': 'Web Development, Kobo eReader Modifications, KOReader Modifications',
+        'hobbies_software': 'Web Development, KOReader Modifications',
         'hobbies_hardware': 'Modding Hardware',
         'email_personal': '',
         'email_secondary': '',
