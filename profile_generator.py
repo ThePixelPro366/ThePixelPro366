@@ -90,12 +90,6 @@ def generate_profile_svg(username, preferences):
     hobby_soft = _escape_xml(_get(preferences, 'hobbies_software', _get(preferences, 'software_hobbies', '')))
     hobby_hard = _escape_xml(_get(preferences, 'hobbies_hardware', _get(preferences, 'hardware_hobbies', '')))
 
-    email_personal = _escape_xml(_get(preferences, 'email_personal', _get(preferences, 'email', 'you@example.com')))
-    email_secondary = _escape_xml(_get(preferences, 'email_secondary', ''))
-    email_work = _escape_xml(_get(preferences, 'email_work', ''))
-    linkedin = _escape_xml(_get(preferences, 'linkedin', ''))
-    discord = _escape_xml(_get(preferences, 'discord', ''))
-
     repos = _escape_xml(_fmt_int(_get(preferences, 'repos', 0)))
     contrib = _escape_xml(_fmt_int(_get(preferences, 'contributed', _get(preferences, 'contrib_data', 0))))
     stars = _escape_xml(_fmt_int(_get(preferences, 'stars', 0)))
@@ -127,12 +121,6 @@ def generate_profile_svg(username, preferences):
     hsoft_dots = _escape_xml(_leader_dots('Hobbies.Software', hobby_soft, target=45))
     hhard_dots = _escape_xml(_leader_dots('Hobbies.Hardware', hobby_hard, target=45))
 
-    email1_dots = _escape_xml(_leader_dots('Email.Personal', email_personal, target=45))
-    email2_dots = _escape_xml(_leader_dots('Email.Secondary', email_secondary, target=45))
-    email3_dots = _escape_xml(_leader_dots('Email.Work', email_work, target=45))
-    linkedin_dots = _escape_xml(_leader_dots('LinkedIn', linkedin, target=45))
-    discord_dots = _escape_xml(_leader_dots('Discord', discord, target=45))
-
     repo_dots = _escape_xml(_leader_dots('Repos', repos, target=45))
     contrib_dots = _escape_xml(_leader_dots('Contributed', contrib, target=45))
     star_dots = _escape_xml(_leader_dots('Stars', stars, target=45))
@@ -141,7 +129,6 @@ def generate_profile_svg(username, preferences):
     loc_dots = _escape_xml(_leader_dots('Lines of Code on GitHub', loc_total, target=45))
 
     sep = _escape_xml(_get(preferences, 'separator', ' -———————————————————————————————————————————-—-'))
-    sep2 = _escape_xml(_get(preferences, 'separator_contact', ' -——————————————————————————————————————————————-—-'))
     sep3 = _escape_xml(_get(preferences, 'separator_stats', ' -—————————————————————————————————————————-—-'))
 
     def tspan_line(y, content):
@@ -199,45 +186,6 @@ def generate_profile_svg(username, preferences):
         f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:'
         f'<tspan class="cc">{hhard_dots}</tspan><tspan class="value">{hobby_hard}</tspan>'
     )
-    y += int(line_h * 2)
-
-    right_tspans.append(tspan_line(y, f'- Contact{sep2}'))
-    y += line_h
-
-    right_tspans.append(
-        f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Personal</tspan>:'
-        f'<tspan class="cc">{email1_dots}</tspan><tspan class="value">{email_personal}</tspan>'
-    )
-    y += line_h
-
-    if email_secondary:
-        right_tspans.append(
-            f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Secondary</tspan>:'
-            f'<tspan class="cc">{email2_dots}</tspan><tspan class="value">{email_secondary}</tspan>'
-        )
-        y += line_h
-
-    if email_work:
-        right_tspans.append(
-            f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Work</tspan>:'
-            f'<tspan class="cc">{emailw_dots}</tspan><tspan class="value">{email_work}</tspan>'
-        )
-        y += line_h
-
-    if linkedin:
-        right_tspans.append(
-            f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:'
-            f'<tspan class="cc">{linkedin_dots}</tspan><tspan class="value">{linkedin}</tspan>'
-        )
-        y += line_h
-
-    if discord:
-        right_tspans.append(
-            f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Discord</tspan>:'
-            f'<tspan class="cc">{discord_dots}</tspan><tspan class="value">{discord}</tspan>'
-        )
-        y += line_h
-
     y += line_h
     right_tspans.append(tspan_line(y, f'- GitHub Stats{sep3}'))
     y += line_h
