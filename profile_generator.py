@@ -60,10 +60,10 @@ def generate_profile_svg(username, preferences):
 
     # Layout defaults match the example
     width = _get(preferences, 'width', '985px')
-    height = _get(preferences, 'height', '400px')
+    height = _get(preferences, 'height', '320px')
     font_size = _get(preferences, 'font_size', '12px')
     font_family = _get(preferences, 'font_family', 'ConsolasFallback,Consolas,monospace')
-    left_x = int(_get(preferences, 'left_x', 15))
+    left_x = int(_get(preferences, 'left_x', 10))
     right_x = int(_get(preferences, 'right_x', 390))
     top_y = int(_get(preferences, 'top_y', 30))
     line_h = int(_get(preferences, 'line_height', 14))
@@ -81,8 +81,6 @@ def generate_profile_svg(username, preferences):
     title = _escape_xml(_get(preferences, 'title', username))
     os_text = _escape_xml(_get(preferences, 'os', 'Windows 11'))
     uptime_text = _escape_xml(_get(preferences, 'uptime', '0 days'))
-    host_text = _escape_xml(_get(preferences, 'host', 'My Host'))
-    kernel_text = _escape_xml(_get(preferences, 'kernel', 'My Kernel'))
     ide_text = _escape_xml(_get(preferences, 'ide', 'VS Code'))
 
     langs_prog = _escape_xml(_get(preferences, 'languages_programming', _get(preferences, 'programming_langs', 'Python')))
@@ -118,31 +116,29 @@ def generate_profile_svg(username, preferences):
         ascii_tspans.append(f'<tspan x="{left_x}" y="{y}">{line}</tspan>')
 
     # Dotted leaders (roughly like example; you can tune targets per row)
-    os_dots = _escape_xml(_leader_dots('OS', os_text, target=34))
-    uptime_dots = _escape_xml(_leader_dots('Uptime', uptime_text, target=34))
-    host_dots = _escape_xml(_leader_dots('Host', host_text, target=34))
-    kernel_dots = _escape_xml(_leader_dots('Kernel', kernel_text, target=34))
-    ide_dots = _escape_xml(_leader_dots('IDE', ide_text, target=34))
+    os_dots = _escape_xml(_leader_dots('OS', os_text, target=45))
+    uptime_dots = _escape_xml(_leader_dots('Uptime', uptime_text, target=45))
+    ide_dots = _escape_xml(_leader_dots('IDE', ide_text, target=45))
 
-    prog_dots = _escape_xml(_leader_dots('Languages.Programming', langs_prog, target=34))
-    comp_dots = _escape_xml(_leader_dots('Languages.Computer', langs_comp, target=34))
-    real_dots = _escape_xml(_leader_dots('Languages.Real', langs_real, target=34))
+    prog_dots = _escape_xml(_leader_dots('Languages.Programming', langs_prog, target=45))
+    comp_dots = _escape_xml(_leader_dots('Languages.Computer', langs_comp, target=45))
+    real_dots = _escape_xml(_leader_dots('Languages.Real', langs_real, target=45))
 
-    hsoft_dots = _escape_xml(_leader_dots('Hobbies.Software', hobby_soft, target=34))
-    hhard_dots = _escape_xml(_leader_dots('Hobbies.Hardware', hobby_hard, target=34))
+    hsoft_dots = _escape_xml(_leader_dots('Hobbies.Software', hobby_soft, target=45))
+    hhard_dots = _escape_xml(_leader_dots('Hobbies.Hardware', hobby_hard, target=45))
 
-    email1_dots = _escape_xml(_leader_dots('Email.Personal', email_personal, target=34))
-    email2_dots = _escape_xml(_leader_dots('Email.Secondary', email_secondary, target=34))
-    emailw_dots = _escape_xml(_leader_dots('Email.Work', email_work, target=34))
-    linkedin_dots = _escape_xml(_leader_dots('LinkedIn', linkedin, target=34))
-    discord_dots = _escape_xml(_leader_dots('Discord', discord, target=34))
+    email1_dots = _escape_xml(_leader_dots('Email.Personal', email_personal, target=45))
+    email2_dots = _escape_xml(_leader_dots('Email.Secondary', email_secondary, target=45))
+    email3_dots = _escape_xml(_leader_dots('Email.Work', email_work, target=45))
+    linkedin_dots = _escape_xml(_leader_dots('LinkedIn', linkedin, target=45))
+    discord_dots = _escape_xml(_leader_dots('Discord', discord, target=45))
 
-    # GitHub Stats dotted leaders (these ids match today.py style so you can swap later)
-    repo_dots = _escape_xml(_leader_dots('Repos', repos, target=10))
-    star_dots = _escape_xml(_leader_dots('Stars', stars, target=18))
-    commit_dots = _escape_xml(_leader_dots('Commits', commits, target=24))
-    follower_dots = _escape_xml(_leader_dots('Followers', followers, target=14))
-    loc_dots = _escape_xml(_leader_dots('Lines of Code on GitHub', loc_total, target=6))
+    repo_dots = _escape_xml(_leader_dots('Repos', repos, target=45))
+    contrib_dots = _escape_xml(_leader_dots('Contributed', contrib, target=45))
+    star_dots = _escape_xml(_leader_dots('Stars', stars, target=45))
+    commit_dots = _escape_xml(_leader_dots('Commits', commits, target=45))
+    follower_dots = _escape_xml(_leader_dots('Followers', followers, target=45))
+    loc_dots = _escape_xml(_leader_dots('Lines of Code on GitHub', loc_total, target=45))
 
     sep = _escape_xml(_get(preferences, 'separator', ' -———————————————————————————————————————————-—-'))
     sep2 = _escape_xml(_get(preferences, 'separator_contact', ' -——————————————————————————————————————————————-—-'))
@@ -168,18 +164,7 @@ def generate_profile_svg(username, preferences):
     )
     y += line_h
 
-    right_tspans.append(
-        f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Host</tspan>:'
-        f'<tspan class="cc">{host_dots}</tspan><tspan class="value">{host_text}</tspan>'
-    )
-    y += line_h
-
-    right_tspans.append(
-        f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">Kernel</tspan>:'
-        f'<tspan class="cc">{kernel_dots}</tspan><tspan class="value">{kernel_text}</tspan>'
-    )
-    y += line_h
-
+    
     right_tspans.append(
         f'<tspan x="{right_x}" y="{y}" class="cc">. </tspan><tspan class="key">IDE</tspan>:'
         f'<tspan class="cc">{ide_dots}</tspan><tspan class="value">{ide_text}</tspan>'
