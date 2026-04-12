@@ -267,7 +267,7 @@ def update_svg_files(username, preferences):
 if __name__ == '__main__':
     # Your preferences - edit these!
     my_preferences = {
-        'title': 'ThePixel@Pro',
+        'title': 'Pixel@Pro',
         'os': 'Windows 11, Arch Linux',
         'uptime': '1 year, 2 months, 3 days',
         'host': 'Your Host',
